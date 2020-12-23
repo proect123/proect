@@ -5,7 +5,7 @@ button_rect = button_image.get_rect()
 
 bg_image = pg.image.load('textures/bg_image.png')
 
-mouse_rect = pg.rect((0, 0, 1, 1))
+mouse_rect = pg.Rect((0, 0, 1, 1))
 
 class Button():
     def __init__(self, x, y):
