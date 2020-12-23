@@ -1,15 +1,22 @@
-from settings import *
+from settings import screen, screen_size, pg, best_font
 
 button_image = pg.image.load('textures/button.png')
-button_pressed_image = pg.image.load('textures/button_pressed.png')
+button_rect = button_image.get_rect()
+
+bg_image = pg.image.load('textures/bg_image.png')
+
+mouse_rect = pg.rect((0, 0, 1, 1))
+
+class Button():
+    def __init__(self, x, y):
+        self.rect = pg.Rect((x, y, button_rect.width, button_rect.height))
+        self.image = button_image
 
 
 def show_menu():
-    screen.fill((100, 100, 100))
-    
-    screen.blit(button_image, (0,0))
-    screen.blit(button_pressed_image, (100,0))
+    screen.blit(bg_image, (0, 0))
 
     pg.display.update()
 
 show_menu()
+
