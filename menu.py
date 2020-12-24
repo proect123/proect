@@ -1,10 +1,10 @@
 import sys
 from settings import screen, screen_size, screen_width, screen_height, pg, best_font
 
-button_image = pg.image.load('proect/textures/button.png')
+button_image = pg.image.load('textures/button.png')
 button_rect = button_image.get_rect()
 
-bg_image = pg.image.load('proect/textures/bg_image.png')
+bg_image = pg.image.load('textures/bg_image.png')
 
 mouse_rect = pg.Rect((0, 0, 1, 1))
 
