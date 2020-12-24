@@ -1,3 +1,4 @@
+import sys
 from settings import screen, screen_size, screen_width, screen_height, pg, best_font
 
 button_image = pg.image.load('proect/textures/button.png')
@@ -11,11 +12,12 @@ class Button():
     def __init__(self, x, y):
         self.rect = pg.Rect((x, y, button_rect.width, button_rect.height))
         self.image = button_image
-        self.text = 'heelo'
+        self.text = ''
+        self.text_color = (0, 0, 0)
 
     def update(self):
         screen.blit(self.image, (self.rect.x, self.rect.y))
-        screen.blit(best_font.render(self.text, True, (0, 0, 0)),\
+        screen.blit(best_font.render(self.text, True, self.text_color),\
                     (self.rect.x + self.rect.width // 2 - best_font.size(self.text)[0] // 2,\
                     self.rect.y + self.rect.height // 2 - best_font.size(self.text)[1] // 2))
 
@@ -28,13 +30,27 @@ button_list[-3].text = 'QUIT'
 
 
 def show_menu():
-    while 1:
-        screen.blit(bg_image, (0, 0))
+    global mouse_rect
+    screen.blit(bg_image, (0, 0))
 
-        for btn in button_list:
-            btn.update()
+    mouse_rect.x = pg.mouse.get_pos()[0]
+    mouse_rect.y = pg.mouse.get_pos()[1]
 
-        pg.display.update()
+    for btn in button_list:
+        if mouse_rect.colliderect(btn.rect):
+            btn.text_color = (240, 100, 100)
+        else:
+            btn.text_color = (0, 0, 0)
 
-show_menu()
+        btn.update()
+
+    pg.display.update()
+
+while True:
+    for e in pg.event.get():
+        if e.type == pg.KEYDOWN:
+            if e.key == pg.K_ESCAPE:
+                sys.exit(0)
+
+    show_menu()
 
