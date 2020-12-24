@@ -36,9 +36,12 @@ def show_menu():
     mouse_rect.x = pg.mouse.get_pos()[0]
     mouse_rect.y = pg.mouse.get_pos()[1]
 
-    for btn in button_list:
+    for i, btn in enumerate(button_list):
         if mouse_rect.colliderect(btn.rect):
             btn.text_color = (240, 100, 100)
+            if pg.mouse.get_pressed()[0]:
+                if i == 0:
+                    sys.exit(0)
         else:
             btn.text_color = (0, 0, 0)
 
